@@ -51,15 +51,49 @@
     opacity: 1;
   }
 }
+
+	#judul-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+  animation: slideIn 1s ease-in-out;
+}
+
+#logo-desa {
+  height: 50px;
+  margin-right: 15px;
+}
+
+#judul-animasi {
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0;
+}
+
 </style>
 
+
+	    
         <title></title>
     </head>
     <body>
         <div id="map">
         </div>
-	<div id="judul-animasi">PETA TEMATIK DESA AIR BELO</div>
-	<img id="logo-desa" src="img/logo_desa.png" alt="Logo Desa">
+	<div id="judul-container">
+ 	 	<img id="logo-desa" src="img/logo_desa.png" alt="Logo Desa">
+ 		<div id="judul-animasi">PETA TEMATIK DESA AIR BELO</div>
+	</div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
         <script src="js/L.Control.Layers.Tree.min.js"></script>
