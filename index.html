@@ -66,19 +66,47 @@
     height: 40px;
   }
 }
+#info-box {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  width: 250px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+  font-family: 'Poppins', sans-serif;
+}
+
+#info-box h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+#info-box p {
+  margin: 10px 0;
+  font-size: 14px;
+}
 
 </style>
-
-
-	    
         <title></title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </head>
     <body>
         <div id="map">
         </div>
 	<div id="judul-container">
- 	 	<img id="logo-desa" src="img/logo_desa.png" alt="Logo Desa">
+		 	 	<img id="logo-desa" src="img/logo_desa.png" alt="Logo Desa">
  		<div id="judul-animasi">PETA TEMATIK DESA AIR BELO</div>
+	</div>
+	<div id="info-box">
+  		<h3>Informasi Penduduk</h3>
+  		<p><strong>Jumlah Penduduk:</strong> 1.234</p>
+  		<canvas id="donutChart" width="200" height="200"></canvas>
 	</div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
@@ -316,5 +344,33 @@
             resetLabels([layer_AIRBELO_MENTOK_1]);
         });
         </script>
+	    <script>
+  const ctx = document.getElementById('donutChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Bekerja', 'Tidak Bekerja'],
+      datasets: [{
+        data: [750, 484],
+        backgroundColor: ['#2ecc71', '#e74c3c'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: '70%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: {
+              size: 12
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
     </body>
 </html>
