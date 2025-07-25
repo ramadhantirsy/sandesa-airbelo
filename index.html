@@ -27,7 +27,6 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  transform: translateY(-40px);
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.7);
@@ -52,14 +51,14 @@
   color: #2c3e50;
   margin: 0;
 }
-@keyframes slideIn {
+@keyframes fadeInSlide {
   from {
-    transform: translateY(-40px);
     opacity: 0;
+    margin-left: -30px; /* efek seolah geser kiri */
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    margin-left: 0;
   }
 }
 </style>
