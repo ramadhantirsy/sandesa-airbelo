@@ -90,7 +90,6 @@
   margin: 10px 0;
   font-size: 14px;
 }
-
 </style>
         <title></title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -105,7 +104,7 @@
 	</div>
 	<div id="info-box">
   		<h3>Informasi Penduduk</h3>
-  		<p><strong>Jumlah Penduduk:</strong> 1.234</p>
+ 		<p><strong>Jumlah Penduduk:</strong> 1.234</p>
   		<canvas id="donutChart" width="200" height="200"></canvas>
 	</div>
         <script src="js/qgis2web_expressions.js"></script>
@@ -344,18 +343,24 @@
             resetLabels([layer_AIRBELO_MENTOK_1]);
         });
         </script>
-	    <script>
-  const ctx = document.getElementById('donutChart').getContext('2d');
-  new Chart(ctx, {
+	    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const data = {
+    labels: ['Bekerja', 'Tidak Bekerja'],
+    datasets: [{
+      label: 'Status Pekerjaan',
+      data: [750, 484],
+      backgroundColor: [
+        'rgb(75, 192, 192)',   // Bekerja
+        'rgb(255, 99, 132)'    // Tidak Bekerja
+      ],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
     type: 'doughnut',
-    data: {
-      labels: ['Bekerja', 'Tidak Bekerja'],
-      datasets: [{
-        data: [750, 484],
-        backgroundColor: ['#2ecc71', '#e74c3c'],
-        borderWidth: 1
-      }]
-    },
+    data: data,
     options: {
       responsive: true,
       cutout: '70%',
@@ -370,7 +375,12 @@
         }
       }
     }
-  });
+  };
+
+  const donutChart = new Chart(
+    document.getElementById('donutChart'),
+    config
+  );
 </script>
     </body>
 </html>
