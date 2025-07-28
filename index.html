@@ -90,6 +90,42 @@
   margin: 10px 0;
   font-size: 14px;
 }
+
+	.stat-container {
+margin-top: 10px;
+}
+
+.stat-header {
+background: #2f333a;
+padding: 6px 12px;
+border-radius: 20px;
+text-align: center;
+font-weight: bold;
+font-size: 14px;
+margin-bottom: 12px;
+color: white;
+}
+
+.stat-box {
+background: #0e1117;
+border-radius: 10px;
+padding: 12px;
+margin-bottom: 10px;
+text-align: center;
+box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.stat-value {
+font-size: 24px;
+font-weight: bold;
+color: white;
+}
+
+.stat-label {
+font-size: 13px;
+color: #bbbbbb;
+margin-top: 4px;
+}
 </style>
         <title></title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -104,8 +140,20 @@
 	</div>
 	<div id="info-box">
   		<h3>Informasi Penduduk</h3>
- 		<p><strong>Jumlah Penduduk:</strong> 1.234</p>
-  		<canvas id="donutChart" width="200" height="200"></canvas>
+ 		<div class="stat-container"> <div class="stat-header">📍 Desa Air Belo
+		</div> 
+			<div class="stat-box"> <div class="stat-value" id="jumlah-penduduk">0
+			</div> 
+				<div class="stat-label">Jumlah Penduduk
+				</div> 
+			</div> 
+			<div class="stat-box"> <div class="stat-value" id="persen-industri">0%
+			</div> <div class="stat-label">Lapangan Usaha Industri Pengolahan
+			</div>
+			</div> 
+		</div>
+<canvas id="donutChart" width="200" height="200">
+	</canvas>
 	</div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
@@ -382,5 +430,20 @@
     config
   );
 </script>
+	    <script> function animateValue(id, start, end, duration, suffix = '') { 
+	const obj = document.getElementById(id); 
+	let startTimestamp = null; 
+	const step = (timestamp) => { 
+		if (!startTimestamp) startTimestamp = timestamp; 
+		const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+		const value = suffix === '%' ? (progress * (end - start) + start).toFixed(2) : Math.floor(progress * (end - start) + start);
+		obj.innerHTML = value.toLocaleString() + suffix; 
+		if (progress < 1) { window.requestAnimationFrame(step); 
+				  } 
+	}; 
+	window.requestAnimationFrame(step); 
+} window.onload = function () { animateValue('jumlah-penduduk', 0, 1234, 1500); animateValue('persen-industri', 0, 28.75, 1500, '%'); 
+			      };
+	    </script>
     </body>
 </html>
