@@ -448,21 +448,21 @@ margin-top: 4px;
     config
   );
 </script>
-	    <script> function animateValue(id, start, end, duration, suffix = '') { 
-	const obj = document.getElementById(id); 
-	let startTimestamp = null; 
-	const step = (timestamp) => { 
-		if (!startTimestamp) startTimestamp = timestamp; 
-		const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-		const value = suffix === '%' ? (progress * (end - start) + start).toFixed(2) : Math.floor(progress * (end - start) + start);
-		obj.innerHTML = value.toLocaleString() + suffix; 
-		if (progress < 1) { window.requestAnimationFrame(step); 
-				  } 
+<script> 
+	function animateValue(id, start, end, duration, suffix = '') { 
+		const obj = document.getElementById(id); 
+		let startTimestamp = null; 
+		const step = (timestamp) => { 
+			if (!startTimestamp) startTimestamp = timestamp; 
+			const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+			const value = suffix === '%' ? (progress * (end - start) + start).toFixed(2) : Math.floor(progress * (end - start) + start);
+			obj.innerHTML = value.toLocaleString() + suffix; 
+			if (progress < 1) { 
+				window.requestAnimationFrame(step); 
+			} 
 	}; 
 	window.requestAnimationFrame(step); 
-} window.onload = function () { animateValue('jumlah-penduduk', 0, 1234, 1500); animateValue('persen-industri', 0, 28.75, 1500, '%'); 
-			      };
-	    </script>
+</script>
 <script>
 function animateValue(id, start, end, duration, suffix = '') {
   const obj = document.getElementById(id);
@@ -491,47 +491,6 @@ function toggleInfo() {
     animateValue('jumlah-penduduk', 0, 1234, 1500);
     animateValue('persen-industri', 0, 28.75, 1500, '%');
   }
-}
-if (!visible) {
-  animateValue('jumlah-penduduk', 0, 1234, 1500);
-  animateValue('persen-industri', 0, 28.75, 1500, '%');
-}
-  const data = {
-    labels: ['Bekerja', 'Tidak Bekerja'],
-    datasets: [{
-      label: 'Status Pekerjaan',
-      data: [750, 484],
-      backgroundColor: ['rgb(75, 192, 192)', 'rgb(255, 99, 132)'],
-      hoverOffset: 4
-    }]
-  };
-
-  const config = {
-    type: 'doughnut',
-    data: data,
-    options: {
-      responsive: true,
-      cutout: '40%',
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {
-            font: {
-              size: 12
-            }
-          }
-        }
-      }
-    }
-  };
-
-  const donutChart = new Chart(
-    document.getElementById('donutChart'),
-    config
-  );
-if (!visible) {
-  animateValue('jumlah-penduduk', 0, 1234, 1500);
-  animateValue('persen-industri', 0, 28.75, 1500, '%');
 }
 </script>
     </body>
