@@ -214,14 +214,14 @@
           colors: ['#2563eb','#ec4899']
         },
         job: {
-          labels: ['Formal','Informal'],
-          data:   [1800, 2505],
-          colors: ['#10b981','#f59e0b']
+          labels: ['Bekerja','Tidak Bekerja'],
+          data:   [750, 484],
+          colors: ['#10b981','#ef4444']
         },
         age: {
-          labels: ['15-24','25-34','35-44','45-54','55-64'],
-          data:   [500, 900, 1200, 900, 805],
-          colors: ['#3b82f6','#8b5cf6','#ef4444','#14b8a6','#f97316']
+          labels: ['0-14','15-64','65+'],
+          data:   [300, 850, 84],
+          colors: ['#8b5cf6','#f59e0b','#6b7280']
         }
       };
 
@@ -259,7 +259,8 @@
         const step = (ts)=>{
           if(!startTimestamp) startTimestamp = ts;
           const p = Math.min((ts - startTimestamp)/duration, 1);
-          const val = suffix==='%' ? (p*(end-start)+start).toFixed(2) : Math.floor(p*(end-start)+start);
+          const raw = p*(end-start)+start;
+          const val = suffix==='%' ? raw.toFixed(2) : Math.floor(raw);
           obj.innerHTML = Number(val).toLocaleString() + suffix;
           if(p<1) requestAnimationFrame(step);
         };
