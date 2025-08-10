@@ -252,29 +252,23 @@
                 font: { weight: 'bold', size: 14 }
               },
               legend: {
-                position: 'bottom',
-                labels: {
-                  // Tampilkan label + jumlah + (%)
-                  generateLabels(chart){
-                    const ds = chart.data.datasets[0];
-                    const labels = chart.data.labels || [];
-                    const tot = sum(ds.data);
-                    return labels.map((lbl, i) => {
-                      const val = Number(ds.data[i] || 0);
-                      const pct = tot ? ((val / tot) * 100).toFixed(2) : 0;
-                      const style = {
-                        text: `${lbl}: ${val.toLocaleString()} (${pct}%)`,
-                        fillStyle: ds.backgroundColor[i],
-                        strokeStyle: ds.backgroundColor[i],
-                        lineWidth: 0,
-                        hidden: false,
-                        index: i
-                      };
-                      return style;
-                    });
-                  }
-                }
-              },
+  position: 'bottom',
+  labels: {
+    // Tampilkan label + jumlah + (%)
+    generateLabels(chart){
+      const ds = chart.data.datasets[0];
+      const labels = chart.data.labels || [];
+      return labels.map((lbl, i) => ({
+        text: lbl,  // <-- cuma label saja
+        fillStyle: ds.backgroundColor[i],
+        strokeStyle: ds.backgroundColor[i],
+        lineWidth: 0,
+        hidden: false,
+        index: i
+      }));
+    }
+  }
+},
               tooltip: {
                 callbacks: {
                   // tooltip: Label: jumlah (xx.xx%)
